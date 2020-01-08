@@ -4,14 +4,15 @@
 #
 Name     : perl-File-Next
 Version  : 1.18
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-next-perl/libfile-next-perl_1.16-2.debian.tar.xz
-Summary  : File-finding iterator
+Summary  : 'File-finding iterator'
 Group    : Development/Tools
 License  : Artistic-2.0 GPL-2.0 MIT
 Requires: perl-File-Next-license = %{version}-%{release}
+Requires: perl-File-Next-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -23,7 +24,6 @@ File-Next
 Summary: dev components for the perl-File-Next package.
 Group: Development
 Provides: perl-File-Next-devel = %{version}-%{release}
-Requires: perl-File-Next = %{version}-%{release}
 Requires: perl-File-Next = %{version}-%{release}
 
 %description dev
@@ -38,12 +38,22 @@ Group: Default
 license components for the perl-File-Next package.
 
 
+%package perl
+Summary: perl components for the perl-File-Next package.
+Group: Default
+Requires: perl-File-Next = %{version}-%{release}
+
+%description perl
+perl components for the perl-File-Next package.
+
+
 %prep
 %setup -q -n File-Next-1.18
-cd ..
-%setup -q -T -D -n File-Next-1.18 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libfile-next-perl_1.16-2.debian.tar.xz
+cd %{_builddir}/File-Next-1.18
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/File-Next-1.18/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/File-Next-1.18/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -68,7 +78,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-Next
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Next/deblicense_copyright
+cp %{_builddir}/File-Next-1.18/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Next/a72be0e36cf1bb7d61766c95b639de45698e278b
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,7 +91,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/File/Next.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -89,4 +98,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-File-Next/deblicense_copyright
+/usr/share/package-licenses/perl-File-Next/a72be0e36cf1bb7d61766c95b639de45698e278b
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/File/Next.pm
