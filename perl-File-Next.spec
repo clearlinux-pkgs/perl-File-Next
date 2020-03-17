@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Next
 Version  : 1.18
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-next-perl/libfile-next-perl_1.16-2.debian.tar.xz
@@ -78,7 +78,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-Next
-cp %{_builddir}/File-Next-1.18/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Next/a72be0e36cf1bb7d61766c95b639de45698e278b
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-File-Next/a72be0e36cf1bb7d61766c95b639de45698e278b
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -102,4 +102,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/File/Next.pm
+/usr/lib/perl5/vendor_perl/5.30.2/File/Next.pm
