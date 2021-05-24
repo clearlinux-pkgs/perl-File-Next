@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Next
 Version  : 1.18
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-next-perl/libfile-next-perl_1.16-2.debian.tar.xz
