@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Next
 Version  : 1.18
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/File-Next-1.18.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-next-perl/libfile-next-perl_1.16-2.debian.tar.xz
@@ -102,4 +102,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/File/Next.pm
+/usr/lib/perl5/*
